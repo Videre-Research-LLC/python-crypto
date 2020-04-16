@@ -1,16 +1,16 @@
 from setuptools import setup
 
-VERSION = '1.1'
+VERSION = '1.0'
 
 setup(
     name='crypto',
     version=VERSION,
 
     description='A CLI to interract with EM7.',
-    url='https://github.jpl.nasa.gov/cgauge/em7-cli',
+    url='https://github.com/Videre-Research-LLC/python-crypto',
 
     author='Christophe Gauge',
-    author_email='christophe.gauge@jpl.caltech.edu',
+    author_email='chris@videreresearch.com',
 
     packages=['crypto'],
 
