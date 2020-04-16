@@ -1,4 +1,4 @@
-### Crypto
+# Crypto
 
 A Python library for encrypting and decrypting files and/or key/value pairs in a particular section of a configuration file (.ini file).
 
@@ -14,7 +14,7 @@ python3 setup.py install
 ```
 
 
-## usage
+## Usage
 
 This script can be used to:
 - manage private (encryption), public (decryption) and the password-protected private/public keys (`create` `extract` or `clear`)
@@ -40,7 +40,7 @@ commands:
     clear     Delete the unencrypted private key
 ```
 
-# Create a new RSA key
+### Create a new RSA key
 
 The `create` parameter is used to create a new RSA 4096-bit public/private key pair. The default name is `.rsa_key.bin` but an alternate prefix can be specified by using the `-k <prefix>` parameter. This allows users to create and use several keys to further protect their data. Users are required to set a password to protect this public/private key pair. This key is created in the user's home directory by default.
 
@@ -55,7 +55,7 @@ Created password-protected private/public keys file /Users/me/dev_key.bin
 Use the "extract" keyword to create public and private key files.
 ```
 
-# Extract the public and private keys from the RSA key pair
+### Extract the public and private keys from the RSA key pair
 
 The private and public keys can be extracted from the key pair by using the `extract` parameter. This allows users to distribute the public (encryption) key to other users to allow them to encrypt files and/or values. This key is *not* password protected and *cannot* be used for decrypting the data.
 
@@ -87,7 +87,7 @@ Private key deleted: /Users/me/dev_private.pem
 > While the private and public keys can always be extracted from the password-protected key-pair file `dev_key.bin`, the key-pair file cannot be recreated. *If you delete both the private key and the key-pair file then you will no longer be able to decrypt your files or data.*
 
 
-# Encrypt and decrypt a file
+### Encrypt and decrypt a file
 
 The `encrypt` parameter can be used to encrypt a file, and the `decrypt` parameter can be used to decrypt a file. Encrypted files will have a `.encrypted` extension added to the file name. At this time, this script cannot be used to encrypt/decrypt directories, only single files.
 
@@ -120,7 +120,7 @@ Enter key password:
 Failed to decrypt file
 ```
 
-# Encrypt and decrypt values
+### Encrypt and decrypt values
 
 This `get` and `set` parameters of the script can also be used to store and retrieve encrypted values in a configuration file. By default, the file will be stored is the user's home directory and named `.rsa_values.conf` regardless of the key prefix used. This allows for different values in this file to be encrypted using different public encryption keys, maybe by different people.
 
@@ -225,3 +225,9 @@ database_password = YrUidTfrK3w-y2KneYUSWugR0IVjmPvBpjqlBZ_5Oic5td0rO2aeWOuyeiuj
 [PROD]
 database_password = g1G_zRij0D6nerTHn1bJ7fr_HiWLFv4Qi-a2Y9QfjeWy5lRCO4L_9ENuiG4hbqyJj2NtbLJ7-NCpN3wd_i8djTGcY2yTcgsFZQEceco-n1bK9yX3Fq8Go1r2D82ccdlNSASeFwA5XDEiBbjpDmsgeawYQNJJUC84oAdv52cFIqTVHecYXGp8cr93eUI3Cpj8Q67zoMH3bJNXkF1KIcFCdrlFfwOQA3RsVuoYdw_JXztVAGaUBWfnBKWjDuTcM9WJyB2-Zfw8Pv0W4Dd2YkJvjvMcCJakxoVEz1OGFBlLyBwleTXBQVKLxGBkK7Xfr7s0FArM6yBAe5BFOfd-vfNeoR38X-Rc00ojUTpbsforLKTWuvHGx1tXi8F5b7TAhNKsICptmBn52ZZmYQjCyIktgL_v0Trngk0Y3uYiaAZpFJyvNHcebjSJ445c_knbcFdn158tud9WX8dHOcXcx5LXFrfh-hU1Vc0U6MUVXgja7T_-O5N59Hob4DIyb4sHF8x-FGFiBvZK-dvIY_FDt82Z0Bk-AETPCykdkmtTx4eg-_o2eEb9ewKHlgLpnBjUs1FajMcfGYiQnaRQNfubBRHY34nmdJtfqQVqVIcQkD0N19qI-8Mg0RSwLaxKSDPlK06JdZew1Nrli-l7U5wYZV4zLdIzXG4tqy6qIb_8Y5yMXm0=
 ```
+
+## Python example
+
+As mentioned, one of the main purposes of this script is to allow automation scripts to securely access secured information.
+
+See the file `example.py` for use as a Python library.
