@@ -150,13 +150,13 @@ def open_encrypted_key():
     myFile = searchFile(encoded_key_filename)
     if not myFile:
         print('No key found')
-        exit(1)
+        sys.exit(1)
 
     print('Opening encrypted key.')
     secret_code = getpass.getpass("Enter key password: ")
     if secret_code == '':
         print("Password cannot be empty")
-        exit(1)
+        sys.exit(1)
 
     try:
         encoded_key = open(myFile, "rb").read()
@@ -166,10 +166,10 @@ def open_encrypted_key():
     except ValueError as e:
         print("Failed to decrypt private key")
         # print('ValueError: %s' % e)
-        exit(1)
+        sys.exit(1)
     except Exception as e:
         print('Error: %s' % e)
-        exit(1)
+        sys.exit(1)
 
 
 def encrypt_value(args):
@@ -229,10 +229,10 @@ def decrypt_value(args, is_required=True):
         return dec_data.decode("utf-8")
     except ValueError as e:
         print("Failed to decrypt entry, wrong key file used?")
-        exit(1)
+        sys.exit(1)
     except Exception as e:
         print('Error: %s' % e)
-        exit(1)
+        sys.exit(1)
 
 
 def encrypt_file(args):
@@ -240,7 +240,7 @@ def encrypt_file(args):
     global public_key_filename
     if not os.path.isfile(args.file):
         print("File does not exist")
-        exit(1)
+        sys.exit(1)
     encrypted_file_name = os.path.realpath(args.file) + encrypted_file_extension
 
     myFile = searchFile(public_key_filename)
@@ -267,7 +267,7 @@ def encrypt_file(args):
         return encrypted_file_name
     except Exception as e:
         print('Error: %s' % e)
-        exit(1)
+        sys.exit(1)
 
 
 def decrypt_file(args):
@@ -275,7 +275,7 @@ def decrypt_file(args):
     global private_key_filename
     if not os.path.isfile(args.file):
         print("File does not exist")
-        exit(1)
+        sys.exit(1)
     decrypted_file_name = '.'.join(os.path.realpath(args.file).split(".")[:-1])
 
     myFile = searchFile(private_key_filename)
@@ -305,10 +305,10 @@ def decrypt_file(args):
     except ValueError as e:
         print("Failed to decrypt file")
         # print('ValueError: %s' % e)
-        exit(1)
+        sys.exit(1)
     except Exception as e:
         print('Error: %s' % e)
-        exit(1)
+        sys.exit(1)
 
 
 def extract_keys(args):
@@ -338,15 +338,15 @@ def create_keys(args):
     global encoded_key_file
     if os.path.isfile(encoded_key_file):
         print("File %s already exists, aborting." % encoded_key_file)
-        exit(1)
+        sys.exit(1)
     secret_code = getpass.getpass("Enter key password: ")
     if secret_code == '':
         print("Password cannot be empty")
-        exit(1)
+        sys.exit(1)
     secret_code2 = getpass.getpass("Re-enter key password: ")
     if secret_code != secret_code2:
         print("Passwords are not the same, please try again.")
-        exit(1)
+        sys.exit(1)
     print("Creating key...")
 
     key = RSA.generate(key_strength)
@@ -480,10 +480,10 @@ def main():
             encoded_key_file = os.path.expanduser(os.path.join('~/', encoded_key_filename))
     except AttributeError as e:
         print("Invalid parameters, use -h for help.")
-        exit(1)
+        sys.exit(1)
     except Exception as e:
         print('Error: %s' % e)
-        exit(1)
+        sys.exit(1)
 
     if len(vars(args)) > 0:
         sys.exit(args.func(args))
