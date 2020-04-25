@@ -231,3 +231,7 @@ database_password = g1G_zRij0D6nerTHn1bJ7fr_HiWLFv4Qi-a2Y9QfjeWy5lRCO4L_9ENuiG4h
 As mentioned, one of the main purposes of this script is to allow automation scripts to securely access secured information.
 
 See the file `example.py` for use as a Python library.
+
+## Windows Download
+
+Also available as a [Windows executable download](https://github.com/Videre-Research-LLC/python-crypto/releases)
